@@ -1,5 +1,5 @@
 HOLIS SUDAH MASUK
-----------edpoint register---------------- 
+----------endpoint register---------------- 
 http://localhost:3000/api/auth/register
 {
   "name": "John Admin",
