@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 // Router
 app.use('/api/auth', require('./app_server/router/authRouter'));
 app.use('/api/users', require('./app_server/router/userRouter'));
+app.use('/api/products', require('./app_server/router/productRouter'));
 
 // Start Server
 app.listen(PORT, () => {
