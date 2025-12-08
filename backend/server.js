@@ -24,6 +24,9 @@ app.get('/', (req, res) => {
 app.use('/api/auth', require('./app_server/router/authRouter'));
 app.use('/api/users', require('./app_server/router/userRouter'));
 app.use('/api/products', require('./app_server/router/productRouter'));
+app.use('/api/categories', require('./app_server/router/categoryRouter'));
+app.use('/api/suppliers', require('./app_server/router/supplierRouter'));
+app.use('/api/stocks', require('./app_server/router/stockRouter'));
 
 // Start Server
 app.listen(PORT, () => {
