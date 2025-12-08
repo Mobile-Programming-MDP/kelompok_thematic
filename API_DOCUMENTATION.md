@@ -615,8 +615,8 @@ curl -X POST http://localhost:3000/api/products \
 
 ## 📋 Summary Endpoints
 
-| Method | Endpoint | Auth | Deskripsi |
-|--------|----------|------|-----------|
+| Method | Endpoint          | Auth | Deskripsi |
+|--------|----------         |------|-----------|
 | POST | /api/auth/register | ❌ | Register user baru |
 | POST | /api/auth/login | ❌ | Login user |
 | GET | /api/auth/profile | ✅ | Lihat profil user |

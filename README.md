@@ -21,9 +21,12 @@ http://localhost:3000/api/auth/login
 http://localhost:3000/api/users/6936b717797455d4f034cdf3
 
 
-
-
-
+1️⃣ REGISTER/LOGIN → Dapatkan TOKEN
+2️⃣ TAMBAH PRODUK → Auto create Kategori + Initial Stock
+3️⃣ KELOLA SUPPLIER → Info supplier untuk pembelian
+4️⃣ CATAT STOK MASUK → Barang dari supplier
+5️⃣ CATAT STOK KELUAR → Barang terjual/diambil
+6️⃣ LIHAT LAPORAN → History & Analytics
 
 
 
