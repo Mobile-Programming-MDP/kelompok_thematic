@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const { connectDB } = require('./app/database/database');
+const { connectDB } = require('./app_server/database/database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +20,9 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Backend API' });
 });
 
-app.use('/api/users', require('./app/router/userRouter'));
+// Router
+app.use('/api/auth', require('./app_server/router/authRouter'));
+app.use('/api/users', require('./app_server/router/userRouter'));
 
 // Start Server
 app.listen(PORT, () => {
