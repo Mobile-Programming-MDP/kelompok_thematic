@@ -1,5 +1,7 @@
 // Controller untuk Product
 const Product = require('../model/Product');
+const Category = require('../model/Category');
+const Stock = require('../model/Stock');
 
 class ProductController {
   // GET semua produk
@@ -50,7 +52,7 @@ class ProductController {
     }
   }
 
-  // CREATE produk baru
+  // CREATE produk baru + auto create kategori + auto create stok
   static async create(req, res) {
     try {
       const { name, description, category, price, quantity, sku, image } = req.body;
@@ -72,6 +74,15 @@ class ProductController {
         });
       }
 
+      // AUTO CREATE KATEGORI JIKA BELUM ADA
+      let categoryRecord = await Category.findOne({ name: category });
+      if (!categoryRecord) {
+        categoryRecord = await Category.create({
+          name: category,
+          description: `Category for ${category}`,
+        });
+      }
+
       // Buat produk baru
       const product = await Product.create({
         name,
@@ -81,12 +92,23 @@ class ProductController {
         quantity: quantity || 0,
         sku,
         image,
-        createdBy: req.user.id, // User dari token
+        createdBy: req.user.id,
       });
+
+      // AUTO CREATE INITIAL STOCK RECORD
+      if (quantity > 0) {
+        await Stock.create({
+          product: product._id,
+          type: 'in',
+          quantity: quantity,
+          description: 'Initial stock',
+          recordedBy: req.user.id,
+        });
+      }
 
       res.status(201).json({
         success: true,
-        message: 'Product created successfully',
+        message: 'Product created successfully with category and stock initialized',
         data: product,
       });
     } catch (error) {
