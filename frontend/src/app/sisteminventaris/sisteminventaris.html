@@ -1,0 +1,41 @@
+<h3>Input Data Inventaris</h3>
+
+<input type="text" [(ngModel)]="form.nama" placeholder="Nama Barang"><br><br>
+
+<select [(ngModel)]="form.kategori">
+  <option value="">-- Pilih Kategori --</option>
+  <option>Elektronik</option>
+  <option>Furniture</option>
+  <option>ATK</option>
+</select><br><br>
+
+<input type="number" [(ngModel)]="form.jumlah" placeholder="Jumlah"><br><br>
+
+<input type="text" [(ngModel)]="form.lokasi" placeholder="Lokasi"><br><br>
+
+<button (click)="simpanData()">Simpan Data</button>
+
+<hr>
+
+<h3>Output Data Inventaris</h3>
+
+<table border="1" cellpadding="5">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama Barang</th>
+      <th>Kategori</th>
+      <th>Jumlah</th>
+      <th>Lokasi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataInventaris">
+      <td>{{ item.no }}</td>
+      <td>{{ item.nama }}</td>
+      <td>{{ item.kategori }}</td>
+      <td>{{ item.jumlah }}</td>
+      <td>{{ item.lokasi }}</td>
+    </tr>
+  </tbody>
+</table>
