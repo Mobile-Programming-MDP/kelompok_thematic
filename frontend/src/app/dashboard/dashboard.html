@@ -1,0 +1,188 @@
+<!-- Frontend Dashboard -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Inventaris</title>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f7f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #ffffff;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      padding: 15px 0;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: 10px 15px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background-color: #e6f2ff;
+      color: #007bff;
+      border-left: 3px solid #007bff;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 30px;
+      margin-left: 220px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .inventory-table {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #fafafa;
+      font-weight: 600;
+      color: #555;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body>
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <a href="/frontend/src/app/sisteminventaris/sisteminventaris.html" class="active">Dashboard</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px; flex-wrap: wrap;">
+        <button mat-raised-button color="primary" style="padding: 10px 20px; border-radius: 8px; font-size: 16px; font-weight: bold; background: linear-gradient(90deg, #007bff, #0056b3); color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; max-width: 100%; flex: 1;"></button>
+            Logout
+        </button>
+    </div>
+
+    <header class="header">
+      <h1>Dashboard</h1>
+    </header>
+
+    <div class="stats-grid">
+      <div class="card">
+        <div>Total Produk</div>
+        <div>124</div>
+      </div>
+      <div class="card">
+        <div>Stok Rendah</div>
+        <div>14</div>
+      </div>
+      <div class="card">
+        <div>Total Kategori</div>
+        <div>25</div>
+      </div>
+    </div>
+
+    <div class="inventory-table">
+      <h2>Stok Terbaru</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Kategori</th>
+            <th>Stok</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P001</td>
+            <td>Laptop Gaming XZ</td>
+            <td>Elektronik</td>
+            <td>45</td>
+            <td>In Stock</td>
+          </tr>
+          <tr>
+            <td>P002</td>
+            <td>Keyboard RGB</td>
+            <td>Aksesoris</td>
+            <td>8</td>
+            <td>Low Stock</td>
+          </tr>
+          <tr>
+            <td>P003</td>
+            <td>Mouse Wireless</td>
+            <td>Aksesoris</td>
+            <td>120</td>
+            <td>In Stock</td>
+          </tr>
+          <tr>
+            <td>P004</td>
+            <td>Monitor 4K</td>
+            <td>Elektronik</td>
+            <td>2</td>
+            <td>Low Stock</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+

@@ -1,0 +1,29 @@
+.body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0; /* Latar belakang abu-abu muda */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+mat-card {
+    width: 100%;
+    max-width: 450px; /* Lebar card login */
+    background-color: #ffffff; /* Warna putih card */
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    margin: auto; /* Ensure the card is centered */
+}
+
+mat-form-field {
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+

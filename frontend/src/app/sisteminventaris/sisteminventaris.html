@@ -39,3 +39,200 @@
     </tr>
   </tbody>
 </table> -->
+
+<!-- Frontend Beranda -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistem Informasi Inventaris Barang Kampus</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; font-family: Inter, system-ui, sans-serif; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 { font-size: 1.2rem; margin: 0; }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 { font-size: 1.05rem; margin-top: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    label { font-size: 0.8rem; color: var(--muted); }
+
+    input, select {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th { color: var(--muted); font-weight: 500; }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sistem Informasi Inventaris Barang Kampus</h1>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Input Data Inventaris</h2>
+    <div class="grid">
+      <div>
+        <label>Nama Barang</label>
+        <input id="nama" />
+      </div>
+      <div>
+        <label>Kategori</label>
+        <select id="kategori">
+          <option>Elektronik</option>
+          <option>Furniture</option>
+          <option>ATK</option>
+        </select>
+      </div>
+      <div>
+        <label>Jumlah</label>
+        <input id="jumlah" type="number" />
+      </div>
+      <div>
+        <label>Lokasi / Ruangan</label>
+        <input id="lokasi" />
+      </div>
+    </div>
+    <button type="button" id="btnSimpan">Simpan Data</button>
+  </section>
+
+  <section class="card">
+    <h2>Output Data Inventaris</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Barang</th>
+          <th>Kategori</th>
+          <th>Jumlah</th>
+          <th>Lokasi</th>
+        </tr>
+      </thead>
+      <tbody id="tabelBarang"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  © 2025 Sistem Informasi – Inventaris Barang Kampus
+</footer>
+
+<script>
+  const dataInventaris = [];
+
+  document.getElementById('btnSimpan').addEventListener('click', () => {
+    const nama = document.getElementById('nama').value;
+    const kategori = document.getElementById('kategori').value;
+    const jumlah = parseInt(document.getElementById('jumlah').value, 10);
+    const lokasi = document.getElementById('lokasi').value;
+
+    if (!nama || !lokasi || isNaN(jumlah) || jumlah <= 0) {
+      alert('Data belum lengkap');
+      return;
+    }
+
+    dataInventaris.push({ nama, kategori, jumlah, lokasi });
+    renderTabel();
+
+    document.getElementById('nama').value = '';
+    document.getElementById('jumlah').value = '';
+    document.getElementById('lokasi').value = '';
+  });
+
+  function renderTabel() {
+    const tbody = document.getElementById('tabelBarang');
+    tbody.innerHTML = '';
+
+    dataInventaris.forEach((item, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${item.nama}</td>
+        <td>${item.kategori}</td>
+        <td>${item.jumlah}</td>
+        <td>${item.lokasi}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+</script>
+
+</body>
+</html>

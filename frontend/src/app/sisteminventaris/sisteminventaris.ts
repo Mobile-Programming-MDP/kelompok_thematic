@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-sisteminventaris',
+  imports: [],
   templateUrl: './sisteminventaris.html',
+  styleUrl: './sisteminventaris.css'
 })
 export class AppComponent {
   nomor = 1;
