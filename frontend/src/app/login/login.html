@@ -99,6 +99,22 @@
         .login-button:hover {
             background-color: #1976d2;
         }
+
+        .register-button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #28a745; /* Warna hijau untuk tombol register */
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .register-button:hover {
+            background-color: #218838; /* Warna hijau lebih gelap saat hover */
+        }
     </style>
 </head>
 <body>
@@ -128,6 +144,10 @@
       </div>
 
       <button class="login-button" id="loginButton">Login</button>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="location.href='/register'" class="register-button">Register</button>
+      </div>
     </div>
   </div>
 
@@ -170,4 +190,7 @@
             <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
         </form>
     </mat-card-content>
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="location.href='/register'" style="padding: 10px 20px; border-radius: 8px; font-size: 16px; font-weight: bold; background-color: #28a745; color: white; border: none; cursor: pointer;">Register</button>
+    </div>
 </mat-card>

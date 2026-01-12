@@ -1,15 +1,1 @@
-// import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { FormsModule } from '@angular/forms';
-
-// import { AppComponent } from './sisteminventaris/sisteminventaris';
-
-// @NgModule({
-//   declarations: [AppComponent],
-//   imports: [
-//     BrowserModule,
-//     FormsModule
-//   ],
-//   bootstrap: [AppComponent]
-// })
-// export class AppModule {}
+// This file is no longer needed. All configuration is handled in main.ts using bootstrapApplication and standalone components.
