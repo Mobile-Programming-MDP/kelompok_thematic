@@ -28,7 +28,6 @@ http://localhost:3000/api/users/6936b717797455d4f034cdf3
 5️⃣ CATAT STOK KELUAR → Barang terjual/diambil
 6️⃣ LIHAT LAPORAN → History & Analytics
 
-
-
-
+# Link Presentasi (ppt)
+https://www.canva.com/design/DAG-GmI8Iss/lOTorlgbpt6ic1vLTG0uEA/edit
 
