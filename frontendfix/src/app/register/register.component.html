@@ -1,15 +1,70 @@
-<div class="register-container">
-  <h2>Register</h2>
-  <form (submit)="onSubmit($event)">
-    <label>Nama</label>
-    <input type="text" [(ngModel)]="name" name="name" required />
-    <label>Email</label>
-    <input type="email" [(ngModel)]="email" name="email" required />
-    <label>Password</label>
-    <input type="password" [(ngModel)]="password" name="password" required />
-    <label>Konfirmasi Password</label>
-    <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
-    <button type="submit">Register</button>
-  </form>
-  <div *ngIf="error" class="error">{{ error }}</div>
+<div class="register-wrapper">
+  <div class="register-container">
+    <h2>Register</h2>
+    <form (submit)="onSubmit($event)">
+      <div class="form-group">
+        <label for="name">Nama</label>
+        <input 
+          type="text" 
+          id="name"
+          [(ngModel)]="name" 
+          name="name" 
+          placeholder="Masukkan nama lengkap Anda"
+          required 
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email"
+          [(ngModel)]="email" 
+          name="email" 
+          placeholder="Masukkan email Anda"
+          required 
+        />
+      </div>
+      <div class="form-group">
+        <label for="department">Department (Opsional)</label>
+        <input 
+          type="text" 
+          id="department"
+          [(ngModel)]="department" 
+          name="department" 
+          placeholder="Masukkan department Anda"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password"
+          [(ngModel)]="password" 
+          name="password" 
+          placeholder="Minimal 6 karakter"
+          required 
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Konfirmasi Password</label>
+        <input 
+          type="password" 
+          id="confirmPassword"
+          [(ngModel)]="confirmPassword" 
+          name="confirmPassword" 
+          placeholder="Ulangi password Anda"
+          required 
+        />
+      </div>
+      <button type="submit" class="register-button" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Register</span>
+        <span *ngIf="isLoading">Mendaftar...</span>
+      </button>
+    </form>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+    <div class="login-link">
+      <p>Sudah punya akun? <a routerLink="/login">Login di sini</a></p>
+    </div>
+  </div>
 </div>

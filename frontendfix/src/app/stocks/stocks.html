@@ -1,0 +1,91 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<div class="page-wrapper">
+  <div class="page-container">
+    <div class="page-header">
+      <h1>Manajemen Stok</h1>
+      <button class="primary-btn" (click)="openAddModal()">+ Tambah Stok</button>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Memuat data...</p>
+    </div>
+
+    <div *ngIf="!isLoading" class="page-card">
+      <h2>Daftar Stok</h2>
+      <div *ngIf="stocks.length === 0" class="empty-state">
+        <p>Tidak ada data stok. Klik "Tambah Stok" untuk menambahkan stok baru.</p>
+      </div>
+      <div *ngIf="stocks.length > 0" class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Produk</th>
+              <th>Jenis</th>
+              <th>Jumlah</th>
+              <th>Deskripsi</th>
+              <th>Dibuat Oleh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stock of stocks">
+              <td>{{ stock.product?.name || '-' }}</td>
+              <td><span [class]="'badge ' + getTypeClass(stock.type)">{{ getTypeLabel(stock.type) }}</span></td>
+              <td>{{ stock.quantity }}</td>
+              <td>{{ stock.description || '-' }}</td>
+              <td>{{ stock.recordedBy?.name || '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form -->
+<div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Tambah Stok</h3>
+      <button class="close-btn" (click)="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="saveStock()">
+        <div class="form-group">
+          <label>Produk *</label>
+          <select [(ngModel)]="stockForm.product" name="product" required>
+            <option value="">Pilih Produk</option>
+            <option *ngFor="let product of products" [value]="product._id">
+              {{ product.name }} {{ product.sku ? '(' + product.sku + ')' : '' }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Jenis *</label>
+          <select [(ngModel)]="stockForm.type" name="type" required>
+            <option value="in">Masuk</option>
+            <option value="out">Keluar</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Jumlah *</label>
+          <input type="number" [(ngModel)]="stockForm.quantity" name="quantity" required min="1" />
+        </div>
+        <div class="form-group">
+          <label>Deskripsi</label>
+          <textarea [(ngModel)]="stockForm.description" name="description" rows="3"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Batal</button>
+          <button type="submit" class="save-btn">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

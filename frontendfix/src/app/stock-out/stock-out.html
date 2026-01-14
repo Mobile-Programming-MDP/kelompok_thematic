@@ -1,0 +1,93 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<div class="page-wrapper">
+  <div class="page-container">
+    <div class="page-header">
+      <h1>Keluarkan Stok</h1>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="success" class="success-message">
+      {{ success }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Memuat data...</p>
+    </div>
+
+    <div *ngIf="!isLoading" class="page-card">
+      <h2>Daftar Produk dengan Stok Tersedia</h2>
+      <div *ngIf="products.length === 0" class="empty-state">
+        <p>Tidak ada produk dengan stok tersedia.</p>
+      </div>
+      <div *ngIf="products.length > 0" class="products-grid">
+        <div *ngFor="let product of products" class="product-card">
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p class="product-sku" *ngIf="product.sku">SKU: {{ product.sku }}</p>
+            <div class="stock-info">
+              <span class="stock-label">Stok Tersedia:</span>
+              <span class="stock-value">{{ product.quantity || 0 }}</span>
+            </div>
+          </div>
+          <button class="out-btn" (click)="openModal(product)">
+            Keluarkan Stok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form -->
+<div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Keluarkan Stok - {{ selectedProduct?.name }}</h3>
+      <button class="close-btn" (click)="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="submitStockOut()">
+        <div class="form-group">
+          <label>Produk</label>
+          <input type="text" [value]="selectedProduct?.name" disabled class="disabled-input" />
+        </div>
+        <div class="form-group">
+          <label>Stok Tersedia</label>
+          <input type="text" [value]="selectedProduct?.quantity || 0" disabled class="disabled-input" />
+        </div>
+        <div class="form-group">
+          <label>Jumlah yang Dikeluarkan *</label>
+          <input 
+            type="number" 
+            [(ngModel)]="stockOutForm.quantity" 
+            name="quantity" 
+            required 
+            min="1"
+            [max]="selectedProduct?.quantity || 0"
+            placeholder="Masukkan jumlah"
+          />
+          <small class="form-hint">Maksimal: {{ selectedProduct?.quantity || 0 }}</small>
+        </div>
+        <div class="form-group">
+          <label>Keterangan</label>
+          <textarea 
+            [(ngModel)]="stockOutForm.description" 
+            name="description" 
+            rows="3"
+            placeholder="Alasan atau keterangan pengeluaran stok"
+          ></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Batal</button>
+          <button type="submit" class="submit-btn">Keluarkan Stok</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

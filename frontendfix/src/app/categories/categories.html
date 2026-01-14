@@ -1,0 +1,74 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<div class="page-wrapper">
+  <div class="page-container">
+    <div class="page-header">
+      <h1>Manajemen Kategori</h1>
+      <button class="primary-btn" (click)="openAddModal()">+ Tambah Kategori</button>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Memuat data...</p>
+    </div>
+
+    <div *ngIf="!isLoading" class="page-card">
+      <h2>Daftar Kategori</h2>
+      <div *ngIf="categories.length === 0" class="empty-state">
+        <p>Tidak ada kategori. Klik "Tambah Kategori" untuk menambahkan kategori baru.</p>
+      </div>
+      <div *ngIf="categories.length > 0" class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama Kategori</th>
+              <th>Deskripsi</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of categories">
+              <td>{{ category.name }}</td>
+              <td>{{ category.description || '-' }}</td>
+              <td>
+                <button class="edit-btn" (click)="openEditModal(category)">Edit</button>
+                <button class="delete-btn" (click)="deleteCategory(category._id)">Hapus</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form -->
+<div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingCategory ? 'Edit Kategori' : 'Tambah Kategori' }}</h3>
+      <button class="close-btn" (click)="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="saveCategory()">
+        <div class="form-group">
+          <label>Nama Kategori *</label>
+          <input type="text" [(ngModel)]="categoryForm.name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label>Deskripsi</label>
+          <textarea [(ngModel)]="categoryForm.description" name="description" rows="3"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Batal</button>
+          <button type="submit" class="save-btn">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
